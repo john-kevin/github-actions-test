@@ -14,4 +14,9 @@ jobs:
             npm -v
         - name: install docker
           run: |
-             sudo apt-get update -y 
+             sudo apt-get update -y
+        - name: python Commands
+          run: |
+             import platform
+             print(platform.processor())
+          shell: python   
