@@ -10,14 +10,12 @@ jobs:
         run: |
           pwd
           ls
-          git tag -a v1.0.1 -m "Fix pipeline"
-          git push origin v1.0.1
       - name: Checkout
         uses: actions/checkout@v1
-      - name: List Files after checkout
+      - name: Create Tag
         run: |
-          pwd
-          ls  
+          git tag -a v1.0.1 -m "Fix pipeline"
+          git push origin v1.0.1
       - name: Simple JS Action
         id: greet
         uses: actions/hello-world-javascript-action@v1
