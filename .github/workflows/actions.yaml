@@ -35,10 +35,8 @@ jobs:
           git config --local user.name "john-kevin"
           git tag v1.1.1
           git push origin v1.1.1
-      - name: Push changes
-        uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}    
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: Create Tag
       #   run: |
       #     git config --global user.email "kevinsoriano2828@gmail.com"
