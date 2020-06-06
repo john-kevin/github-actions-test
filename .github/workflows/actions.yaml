@@ -33,8 +33,8 @@ jobs:
       
       - name: Create tag and release
         run: |
-          git config --local user.email "kevinsoriano2828@gmail.com"
-          git config --local user.name "john-kevin"
+          git config --global user.email "kevinsoriano2828@gmail.com"
+          git config --global user.name "john-kevin"
           git tag v1.1.1
           git push origin v1.1.1
       # - name: Create Tag
