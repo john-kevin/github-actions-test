@@ -35,7 +35,7 @@ jobs:
           git config --local user.name "john-kevin"
           git tag v1.1.1
           git push origin v1.1.1
-     - name: Push changes
+      - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}    
