@@ -24,6 +24,8 @@ on:
 jobs: 
   run-github-actions:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       
       - name: Checkout
@@ -35,8 +37,6 @@ jobs:
           git config --local user.name "john-kevin"
           git tag v1.1.1
           git push origin v1.1.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # - name: Create Tag
       #   run: |
       #     git config --global user.email "kevinsoriano2828@gmail.com"
