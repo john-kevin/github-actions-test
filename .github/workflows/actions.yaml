@@ -23,16 +23,7 @@ jobs:
           echo $GITHUB_SHA
           echo $GITHUB_REPOSITORY
           echo $GITHUB_WORKSPACE    
-          echo "${{ github.token }}"
-      
-      # - name: Simple JS Action
-      #   id: greet
-      #   uses: actions/hello-world-javascript-action@v1
-      #   with: 
-      #     who-to-greet: Thea mae
-      
-      # - name: Log Greeting Time
-      #   run: echo "${{ steps.greet.outputs.time }}"    
+          echo "${{ github.token }}" 
   build:
     runs-on: ubuntu-latest
     steps:
@@ -49,11 +40,11 @@ jobs:
       run: |
         git config --local user.email "kevinsoriano2828@gmail.com"
         git config --local user.name "john-kevin"
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        tags: true
+    # - name: Push changes
+    #   uses: ad-m/github-push-action@master
+    #   with:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
+    #     tags: true
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
