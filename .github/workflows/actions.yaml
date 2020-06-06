@@ -15,8 +15,8 @@ on:
       - '**.js' #when there is a js file changes
       - '!index.js' #will run in all js except index.js
   # repository_dispatch: 
-  schedule:
-    - cron: "0/5 * * * *"
+  # schedule:
+  #   - cron: "0/5 * * * *"
   # push:
   pull_request:
     types: [closed, assigned, opened, reopened]
