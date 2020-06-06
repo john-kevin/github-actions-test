@@ -15,9 +15,10 @@ jobs:
         touch test.txt
     - name: Commit files
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "Add changes" -a
+        git config --local user.email "kevinsoriano2828@gmail.com"
+        git config --local user.name "john-kevin"
+        git add .
+        git commit -m "Add changes" 
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
