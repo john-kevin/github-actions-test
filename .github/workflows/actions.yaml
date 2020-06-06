@@ -11,9 +11,9 @@ on:
     # branches-ignore: #run on all branch except some branches  
     # tags:
     # tags-ignore:
-    # paths:
-    #   - '**.js' #when there is a js file changes
-    #   - '!index.js' #will run in all js except index.js
+    paths:
+      - '**.js' #when there is a js file changes
+      - '!index.js' #will run in all js except index.js
   # repository_dispatch: 
   schedule:
     - cron: "0/5 * * * *"
