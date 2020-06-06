@@ -39,7 +39,7 @@ jobs:
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Create local changes
       run: |
-        git tag v1.1.1
+        git tag v1.1.2
     - name: Commit files
       run: |
         git config --local user.email "kevinsoriano2828@gmail.com"
