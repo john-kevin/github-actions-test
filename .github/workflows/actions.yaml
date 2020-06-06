@@ -11,9 +11,9 @@ on:
     # branches-ignore: #run on all branch except some branches  
     # tags:
     # tags-ignore:
-    paths:
-      - '**.js' #when there is a js file changes
-      - '!index.js' #will run in all js except index.js
+    # paths:
+    #   - '**.js' #when there is a js file changes
+    #   - '!index.js' #will run in all js except index.js
   # repository_dispatch: 
   # schedule:
   #   - cron: "0/5 * * * *"
@@ -29,17 +29,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       
-      - name: List files
+      - name: Create tag and release
         run: |
-          pwd
-          ls
-      
-      - name: List Environment Variables of github
-        run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_WORKSPACE    
-          echo "${{ github.token }}"
+          git config --local user.email "kevinsoriano2828@gmail.com"
+          git config --local user.name "john-kevin"
+          git tag v1.1.1
+          git push origin v1.1.1
+     - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}    
       # - name: Create Tag
       #   run: |
       #     git config --global user.email "kevinsoriano2828@gmail.com"
