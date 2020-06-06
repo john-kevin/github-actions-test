@@ -1,6 +1,20 @@
 name: Actions Workflow V2
 
 on:
+  push:
+    branches:
+      - master
+      - develop
+      - 'feature/*' #matches feature/a, feature/b, doesnt match feature/feat/b
+      - 'feature/**' #matches feature/feat/b and all string
+      - '!feature/c' #ignore this branch even if feature/* matches this pattern
+    # branches-ignore: #run on all branch except some branches  
+    # tags:
+    # tags-ignore:
+    # paths:
+    #   - '**.js' #when there is a js file changes
+    #   - '!index.js' #will run in all js except index.js
+  # repository_dispatch: 
   schedule:
     - cron: "0/5 * * * *"
   # push:
