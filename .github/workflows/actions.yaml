@@ -21,26 +21,38 @@ on:
   #   - cron: "0/5 * * * *"
 
 jobs:
-  Authentica-and-Push:
+  decrypt-gpg:
     runs-on: ubuntu-latest
     steps:
-      - name: Push a random file
-        run: |
-          pwd
-          ls -a
-          git init
-          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
-          git config --global user.email "my-bot@bot.com"
-          git config --global user.name "my-bot"
-          git fetch --all
-          git checkout master
-          git branch --set-upstream-to=origin/master
-          git pull origin master
-          ls -la
-          echo $RANDOM >> random.txt
-          git add .
-          git commit -m "Add random via actions"
-          git push origin master
+      - name: Checkout the repo
+        uses: actions/checkout@v1
+      - name: Decrypt file
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$PASSPHRASE" --output $HOME/secret.txt secret.txt.gpg
+        env:
+          PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }} 
+      - name: Print the file content
+        run: cat $HOME/secret.txt
+  # Authenticate-and-Push:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Push a random file
+  #       run: |
+  #         pwd
+  #         ls -a
+  #         git init
+  #         git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+  #         git config --global user.email "my-bot@bot.com"
+  #         git config --global user.name "my-bot"
+  #         git fetch --all
+  #         git checkout master
+  #         git branch --set-upstream-to=origin/master
+  #         git pull origin master
+  #         ls -la
+  #         echo $RANDOM >> random.txt
+  #         git add .
+  #         git commit -m "Add random via actions"
+  #         # git push origin master
+  
   # Create-Tag-and-Release:
   #   runs-on: ubuntu-latest
   #   steps:
