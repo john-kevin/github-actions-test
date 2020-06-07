@@ -37,12 +37,13 @@ jobs:
       run: |
         sudo npm install -g github-release-cli
         github-release upload \
-          --owner cheton \
-          --repo github-release-cli \
-          --tag "v0.1.0" \
-          --name "v0.1.0" \
-          --body "This is a prerelease" \
-          --prerelease 
+          --owner=john-kevin \
+          --repo=github-actions-test \
+          --tag="v1-23-23" \
+          --name="tta" \
+          --body="${COMMIT_LOG}" \
+          "releases/myapp-0.1.0-win-x32.exe" \
+          "releases/myapp-0.1.0-win-x64.exe"
     # - name: Create local changes
     #   run: |
     #     PM_VERSION=`cat version | sed -e 's/\-/./g'`
