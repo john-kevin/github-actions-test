@@ -41,9 +41,7 @@ jobs:
           --repo=github-actions-test \
           --tag="v1-23-23" \
           --name="tta" \
-          --body="${COMMIT_LOG}" \
-          "releases/myapp-0.1.0-win-x32.exe" \
-          "releases/myapp-0.1.0-win-x64.exe"
+          --body="${COMMIT_LOG}"
     # - name: Create local changes
     #   run: |
     #     PM_VERSION=`cat version | sed -e 's/\-/./g'`
