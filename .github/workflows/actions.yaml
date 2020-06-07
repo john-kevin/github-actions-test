@@ -33,7 +33,14 @@ jobs:
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Install npm github-release-cli
       run: |
-        sudo npm install -g github-release-cli 
+        sudo npm install -g github-release-cli
+        github-release upload \
+          --owner cheton \
+          --repo github-release-cli \
+          --tag "v0.1.0" \
+          --name "v0.1.0" \
+          --body "This is a prerelease" \
+          --prerelease 
     # - name: Create local changes
     #   run: |
     #     PM_VERSION=`cat version | sed -e 's/\-/./g'`
