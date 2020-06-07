@@ -6,24 +6,24 @@ on:
       - master
 
 jobs: 
-  run-github-actions:
-    runs-on: ubuntu-latest
-    steps:
+  # run-github-actions:
+  #   runs-on: ubuntu-latest
+  #   steps:
       
-      - name: Checkout
-        uses: actions/checkout@v1
+  #     - name: Checkout
+  #       uses: actions/checkout@v1
       
-      - name: List files
-        run: |
-          pwd
-          ls
+  #     - name: List files
+  #       run: |
+  #         pwd
+  #         ls
       
-      - name: List Environment Variables of github
-        run: |
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_WORKSPACE    
-          echo "${{ github.token }}" 
+  #     - name: List Environment Variables of github
+  #       run: |
+  #         echo $GITHUB_SHA
+  #         echo $GITHUB_REPOSITORY
+  #         echo $GITHUB_WORKSPACE    
+  #         echo "${{ github.token }}" 
   build:
     runs-on: ubuntu-latest
     steps:
@@ -31,9 +31,9 @@ jobs:
       with:
         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-    - name:
+    - name: Install npm github-release-cli
       run: |
-        npm -v 
+        npm install -g github-release-cli 
     # - name: Create local changes
     #   run: |
     #     PM_VERSION=`cat version | sed -e 's/\-/./g'`
