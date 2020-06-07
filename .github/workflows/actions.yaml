@@ -1,29 +1,26 @@
-name: Actions Workflow
+name: Actions Workflow V2
 
-on: 
+on:
   push:
     branches:
       - master
-
-jobs: 
-  # run-github-actions:
-  #   runs-on: ubuntu-latest
-  #   steps:
-      
-  #     - name: Checkout
-  #       uses: actions/checkout@v1
-      
-  #     - name: List files
-  #       run: |
-  #         pwd
-  #         ls
-      
-  #     - name: List Environment Variables of github
-  #       run: |
-  #         echo $GITHUB_SHA
-  #         echo $GITHUB_REPOSITORY
-  #         echo $GITHUB_WORKSPACE    
-  #         echo "${{ github.token }}" 
+      - develop
+      - 'feature/*' #matches feature/a, feature/b, doesnt match feature/feat/b
+      - 'feature/**' #matches feature/feat/b and all string
+      - '!feature/c' #ignore this branch even if feature/* matches this pattern
+    # branches-ignore: #run on all branch except some branches  
+    # tags:
+    # tags-ignore:
+    # paths:
+    #   - '**.js' #when there is a js file changes
+    #   - '!index.js' #will run in all js except index.js
+  # repository_dispatch: 
+  # schedule:
+  #   - cron: "0/5 * * * *"
+  # push:
+  pull_request:
+    types: [closed, assigned, opened, reopened]
+jobs:
   build:
     runs-on: ubuntu-latest
     steps:
@@ -43,7 +40,27 @@ jobs:
           --repo=github-actions-test \
           --tag="$TAG" \
           --name="CR-1232" \
-          --body="${COMMIT_LOG}"
+          --body="${COMMIT_LOG}"      
+          
+  # run-github-actions:
+  #   runs-on: ubuntu-latest
+  #   steps:
+      
+  #     - name: Checkout
+  #       uses: actions/checkout@v1
+      
+  #     - name: List files
+  #       run: |
+  #         pwd
+  #         ls
+      
+  #     - name: List Environment Variables of github
+  #       run: |
+  #         echo $GITHUB_SHA
+  #         echo $GITHUB_REPOSITORY
+  #         echo $GITHUB_WORKSPACE    
+  #         echo "${{ github.token }}" 
+
     # - name: Create local changes
     #   run: |
     #     PM_VERSION=`cat version | sed -e 's/\-/./g'`
@@ -72,3 +89,4 @@ jobs:
     #       - Second Change
     #     draft: false
     #     prerelease: false      
+
