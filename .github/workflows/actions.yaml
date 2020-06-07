@@ -18,8 +18,8 @@ on:
   # schedule:
   #   - cron: "0/5 * * * *"
   # push:
-  pull_request:
-    types: [closed, assigned, opened, reopened]
+  # pull_request:
+  #   types: [closed, assigned, opened, reopened]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
           --owner=john-kevin \
           --repo=github-actions-test \
           --tag="$TAG" \
-          --name="CR-1232" \
+          --name="CR-1233" \
           --body="${COMMIT_LOG}"      
           
   # run-github-actions:
