@@ -14,79 +14,67 @@ on:
     # paths:
     #   - '**.js' #when there is a js file changes
     #   - '!index.js' #will run in all js except index.js
+  # pull_request:
+  #   types: [closed, assigned, opened, reopened]    
   # repository_dispatch: 
   # schedule:
   #   - cron: "0/5 * * * *"
-  # push:
-  # pull_request:
-  #   types: [closed, assigned, opened, reopened]
+
 jobs:
-  build:
+  Authentica-and-Push:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-      with:
-        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-        fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
-    - name: Install npm github-release-cli
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        sudo npm install -g github-release-cli
-        PM_VERSION=`cat version | sed -e 's/\-/./g'`
-        TAG="v$PM_VERSION"
-        github-release upload \
-          --owner=john-kevin \
-          --repo=github-actions-test \
-          --tag="$TAG" \
-          --name="CR-1233" \
-          --body="${COMMIT_LOG}"      
-          
-  # run-github-actions:
+      - name: Push a random file
+        run: |
+          pwd
+          ls -a
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+          git config --global user.email "my-bot@bot.com"
+          git config --global user.name "my-bot"
+          git fetch --all
+          git checkout master
+          git branch --set-upstream-to=origin/master
+          git pull origin master
+          ls -la
+          echo $RANDOM >> random.txt
+          git add .
+          git commit -m "Add random via actions"
+          git push origin master
+  # Create-Tag-and-Release:
   #   runs-on: ubuntu-latest
   #   steps:
-      
+  #   - uses: actions/checkout@master
+  #     with:
+  #       persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+  #       fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
+  #   - name: Install npm github-release-cli
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     run: |
+  #       sudo npm install -g github-release-cli
+  #       PM_VERSION=`cat version | sed -e 's/\-/./g'`
+  #       TAG="v$PM_VERSION"
+  #       github-release upload \
+  #         --owner=john-kevin \
+  #         --repo=github-actions-test \
+  #         --tag="$TAG" \
+  #         --name="CR-1233" \
+  #         --body="${COMMIT_LOG}"      
+          
+  # simple-github-actions:
+  #   runs-on: ubuntu-latest
+  #   steps:
   #     - name: Checkout
   #       uses: actions/checkout@v1
-      
   #     - name: List files
   #       run: |
   #         pwd
   #         ls
-      
   #     - name: List Environment Variables of github
   #       run: |
   #         echo $GITHUB_SHA
   #         echo $GITHUB_REPOSITORY
   #         echo $GITHUB_WORKSPACE    
   #         echo "${{ github.token }}" 
-
-    # - name: Create local changes
-    #   run: |
-    #     PM_VERSION=`cat version | sed -e 's/\-/./g'`
-    #     TAG="v$PM_VERSION"
-    #     git tag $TAG
-    # - name: Commit files
-    #   run: |
-    #     git config --local user.email "kevinsoriano2828@gmail.com"
-    #     git config --local user.name "john-kevin"
-    # - name: Push changes
-    #   uses: ad-m/github-push-action@master
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-    #     tags: true
-    # - name: Create Release
-    #   id: create_release
-    #   uses: actions/create-release@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
-    #   with:
-    #     tag_name: v20.1.1
-    #     release_name: CR-1323
-    #     body: |
-    #       Changes in this Release
-    #       - First Change
-    #       - Second Change
-    #     draft: false
-    #     prerelease: false      
 
