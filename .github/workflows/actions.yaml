@@ -36,11 +36,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         sudo npm install -g github-release-cli
+        PM_VERSION=`cat version | sed -e 's/\-/./g'`
+        TAG="v$PM_VERSION"
         github-release upload \
           --owner=john-kevin \
           --repo=github-actions-test \
-          --tag="v1-23-23" \
-          --name="tta" \
+          --tag="$TAG" \
+          --name="CR-1232" \
           --body="${COMMIT_LOG}"
     # - name: Create local changes
     #   run: |
