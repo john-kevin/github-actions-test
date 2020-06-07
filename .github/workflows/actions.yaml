@@ -33,7 +33,7 @@ jobs:
         fetch-depth: 0 # otherwise, you will failed to push refs to dest repo
     - name: Install npm github-release-cli
       run: |
-        npm install -g github-release-cli 
+        sudo npm install -g github-release-cli 
     # - name: Create local changes
     #   run: |
     #     PM_VERSION=`cat version | sed -e 's/\-/./g'`
