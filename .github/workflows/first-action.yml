@@ -9,10 +9,12 @@ on:  # Defines the trigger. More on https://docs.github.com/en/actions/using-wor
     #   - '.github/workflows/*'
   workflow_dispatch:
 jobs: 
-  first-job: # Name of the Job
+  Build: # Name of the Job
     runs-on: ubuntu-latest # Defines the runners. 
     # More on (hosted) https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners 
     # (self hosted) https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
+    outputs:
+      random-file-name: ${{ steps.publish.outputs.something }}
     steps: 
       - name: Get codes
         uses: actions/checkout@v3 # Take advantage of actions. More on https://github.com/marketplace?type=actions
@@ -37,7 +39,10 @@ jobs:
           path: |
             dist
             package.json
-  asdasd-job:
+      - name: Publish an output
+        id: publish
+        run: echo "something=Hehehehehe" >> $GITHUB_OUTPUT
+  Deploy:
     needs: [first-job] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
     steps:
@@ -46,9 +51,7 @@ jobs:
         with:
           name: artifact-jks-1
       - name: Ouput artifacts contents
-        run: ls 
-      - name: Test
-        run: echo "testing onleeh"
+        run: ls
 
 
 
