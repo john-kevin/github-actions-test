@@ -8,8 +8,14 @@ on:  # Defines the trigger. More on https://docs.github.com/en/actions/using-wor
     # paths-ignore: 
     #   - '.github/workflows/*'
   workflow_dispatch:
+env:
+  WF_ENV: ${{ secrets.WF_ENV }}
+  GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
+  KEV: Soriano
 jobs: 
   Build: # Name of the Job
+    env:
+      BUILD-KEV: sosoriano
     runs-on: ubuntu-latest # Defines the runners. 
     # More on (hosted) https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners 
     # (self hosted) https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
@@ -21,6 +27,13 @@ jobs:
         uses: actions/checkout@v3 # Take advantage of actions. More on https://github.com/marketplace?type=actions
       - name: Patingin ng repo
         run: ls -latrh
+      # - name: Caching test
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       dist
+      #       package.json
+      #     key: my-first-cache-${{ hashFiles('package.json') }} # if theres a change in package.json, it will generate new hash, indicating a new  cache
       - name: Create file in dist
         run: |
           touch package.json
@@ -45,6 +58,9 @@ jobs:
         run: |
           echo "something=Hehehehehe" >> $GITHUB_OUTPUT
           echo "something2=hohohoeee" >> $GITHUB_OUTPUT
+      - name: Ouput job specific env Variables
+        run: |
+          echo "BUILD-KEV: ${{ env.BUILD-KEV }}"
   Deploy:
     needs: [Build] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
@@ -59,15 +75,10 @@ jobs:
         run: |
           echo "${{ needs.Build.outputs.random-file-name }}"
           echo "${{ needs.Build.outputs.random-file-name2 }}"
-
-      # - name: Print greeting # name of the step
-      #   run: |
-      #     echo "Hello world!!!!!!!"
-      #     echo "Hello world inside a txt file" > test1.txt
-      # - name: Show file content # name of the step
-      #   run: cat test1.txt
-
-
+      - name: Ouput job specific env Variables
+        run: |
+        echo "BUILD-KEV: ${{ env.BUILD-KEV }}"          
+        echo "KEV: $KEV
 
 #steps:
 # - uses: actions/checkout@v4
