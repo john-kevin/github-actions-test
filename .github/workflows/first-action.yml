@@ -43,7 +43,7 @@ jobs:
         id: publish
         run: echo "something=Hehehehehe" >> $GITHUB_OUTPUT
   Deploy:
-    needs: [first-job] # [first-job, pre-job, ..]
+    needs: [Build] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifacts
@@ -52,6 +52,8 @@ jobs:
           name: artifact-jks-1
       - name: Ouput artifacts contents
         run: ls
+      - name: Ouput filename
+        run: echo "${{ needs.Build.outputs.random-file-name }}"
 
 
 
