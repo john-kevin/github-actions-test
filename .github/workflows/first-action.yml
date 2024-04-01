@@ -1,5 +1,5 @@
 name: TestWF Kevin # Name of the Workflow
-on: push # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on: [push, workflow_dispatch] # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 jobs: 
   first-job: # Name of the Job
     runs-on: ubuntu-latest # Defines the runners. 
@@ -17,7 +17,7 @@ jobs:
       - name: Patingin nga version ng TF
         run: terraform --version
   second-job:
-    needs: first-job
+    needs: [first-job] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
     steps:
       - name: Test
