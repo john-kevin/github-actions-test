@@ -77,8 +77,8 @@ jobs:
           echo "${{ needs.Build.outputs.random-file-name2 }}"
       - name: Ouput job specific env Variables
         run: |
-        echo "BUILD-KEV: ${{ env.BUILD-KEV }}"          
-        echo "KEV: $KEV
+          echo "BUILD-KEV: ${{ env.BUILD-KEV }}"          
+          echo "KEV: $KEV"
 
 #steps:
 # - uses: actions/checkout@v4
