@@ -1,14 +1,32 @@
 name: First Workflow # Name of the Workflow
-on: workflow_dispatch # Defines the trigger
+on: push # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 jobs: 
   first-job: # Name of the Job
     runs-on: ubuntu-latest # Defines the runners. 
     # More on (hosted) https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners 
     # (self hosted) https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
     steps: 
-      - name: Print greeting # name of the step
-        run: |
-          echo "Hello world!!!!!!!"
-          echo "Hello world inside a txt file" > test1.txt
-      - name: Show file content # name of the step
-        run: cat test1.txt
+      - name: Get code
+        uses: actions/checkout@v3 # Take advantage of actions. More on https://github.com/marketplace?type=actions
+      - name: Setup Terraform 
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.7.5"
+
+
+
+
+
+
+      # - name: Print greeting # name of the step
+      #   run: |
+      #     echo "Hello world!!!!!!!"
+      #     echo "Hello world inside a txt file" > test1.txt
+      # - name: Show file content # name of the step
+      #   run: cat test1.txt
+
+
+
+#steps:
+# - uses: actions/checkout@v4
+# - uses: hashicorp/setup-terraform@v3
