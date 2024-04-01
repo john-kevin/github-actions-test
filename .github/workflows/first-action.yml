@@ -4,7 +4,9 @@ on:  # Defines the trigger. More on https://docs.github.com/en/actions/using-wor
   push:
     branches:
       - master
-      - '!test/*' # ignore 
+      - '!test/*' # ignore
+    paths-ignore:
+      - '.github/workflows/*'
   workflow_dispatch:
 jobs: 
   first-job: # Name of the Job
