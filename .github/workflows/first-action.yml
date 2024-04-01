@@ -1,5 +1,9 @@
 name: TestWF Kevinss # Name of the Workflow
-on: [push, workflow_dispatch] # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on:  # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+  push:
+    branches:
+      - master
+      - '!test/*' # ignore 
 jobs: 
   first-job: # Name of the Job
     runs-on: ubuntu-latest # Defines the runners. 
