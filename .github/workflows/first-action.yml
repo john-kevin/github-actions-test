@@ -1,4 +1,4 @@
-name: TestWF Kevin # Name of the Workflow
+name: TestWF Kevinss # Name of the Workflow
 on: [push, workflow_dispatch] # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 jobs: 
   first-job: # Name of the Job
