@@ -5,8 +5,8 @@ on:  # Defines the trigger. More on https://docs.github.com/en/actions/using-wor
     branches:
       - master
       - '!test/*' # ignore
-    paths-ignore: 
-      - '.github/workflows/*'
+    # paths-ignore: 
+    #   - '.github/workflows/*'
   workflow_dispatch:
 jobs: 
   first-job: # Name of the Job
@@ -41,6 +41,12 @@ jobs:
     needs: [first-job] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
     steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: artifact-jks-1
+      - name: Ouput artifacts contents
+        run: ls 
       - name: Test
         run: echo "testing onleeh"
 
