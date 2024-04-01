@@ -1,5 +1,5 @@
 name: First Workflow # Name of the Workflow
-on: [push] # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
+on: push # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 jobs: 
   first-job: # Name of the Job
     runs-on: ubuntu-latest # Defines the runners. 
@@ -8,11 +8,14 @@ jobs:
     steps: 
       - name: Get code
         uses: actions/checkout@v3 # Take advantage of actions. More on https://github.com/marketplace?type=actions
+      - name: Patingin ng repo
+        run: ls -latrh
       - name: Setup Terraform 
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.7.5"
-
+      - name: Patingin ng version ng TF
+        run: terraform --version
 
 
 
