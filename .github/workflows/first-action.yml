@@ -14,7 +14,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.7.5"
-      - name: Patingin ng version ng TF
+      - name: Patingin nga version ng TF
         run: terraform --version
 
 
