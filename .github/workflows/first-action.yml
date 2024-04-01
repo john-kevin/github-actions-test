@@ -15,6 +15,7 @@ jobs:
     # (self hosted) https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
     outputs:
       random-file-name: ${{ steps.publish.outputs.something }}
+      random-file-name2: ${{ steps.publish.outputs.something }}
     steps: 
       - name: Get codes
         uses: actions/checkout@v3 # Take advantage of actions. More on https://github.com/marketplace?type=actions
@@ -41,7 +42,9 @@ jobs:
             package.json
       - name: Publish an output
         id: publish
-        run: echo "something=Hehehehehe" >> $GITHUB_OUTPUT
+        run: |
+          echo "something=Hehehehehe" >> $GITHUB_OUTPUT
+          echo "something2=hohohoeee" >> $GITHUB_OUTPUT
   Deploy:
     needs: [Build] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
@@ -53,10 +56,9 @@ jobs:
       - name: Ouput artifacts contents
         run: ls
       - name: Ouput filename
-        run: echo "${{ needs.Build.outputs.random-file-name }}"
-
-
-
+        run: |
+          echo "${{ needs.Build.outputs.random-file-name }}"
+          echo "${{ needs.Build.outputs.random-file-name2 }}"
 
       # - name: Print greeting # name of the step
       #   run: |
