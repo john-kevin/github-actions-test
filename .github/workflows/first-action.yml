@@ -1,4 +1,4 @@
-name: Test W---F Kevin # Name of the Workflow
+name: Test Workflow - Kevs # Name of the Workflow
 # on: push 
 on:  # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
   push:
