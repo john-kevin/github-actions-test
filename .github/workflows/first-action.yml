@@ -1,7 +1,7 @@
-name: TestWF Kevin diffbranch # Name of the Workflow
+name: TestWF Kevin # Name of the Workflow
 on: [push, workflow_dispatch] # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 jobs: 
-  first-job: # Name of the Job
+  asd-job: # Name of the Job
     runs-on: ubuntu-latest # Defines the runners. 
     # More on (hosted) https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners 
     # (self hosted) https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
