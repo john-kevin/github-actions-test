@@ -17,6 +17,7 @@ jobs:
       - name: Patingin nga version ng TF
         run: terraform --version
   second-job:
+    needs: first-job
     runs-on: ubuntu-latest
     steps:
       - name: Test
