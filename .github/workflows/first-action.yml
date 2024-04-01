@@ -16,7 +16,11 @@ jobs:
           terraform_version: "1.7.5"
       - name: Patingin nga version ng TF
         run: terraform --version
-
+  second-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: echo "test"
 
 
 
