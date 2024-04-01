@@ -1,7 +1,7 @@
 name: TestWF Kevin # Name of the Workflow
 on: [push, workflow_dispatch] # Defines the trigger. More on https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
 jobs: 
-  asd-job: # Name of the Job
+  first-job: # Name of the Job
     runs-on: ubuntu-latest # Defines the runners. 
     # More on (hosted) https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners 
     # (self hosted) https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
@@ -16,7 +16,7 @@ jobs:
           terraform_version: "1.7.5"
       - name: Patingin nga version ng TF
         run: terraform --version
-  second-job:
+  asdasd-job:
     needs: [first-job] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
     steps:
