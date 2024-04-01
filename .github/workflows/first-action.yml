@@ -24,6 +24,13 @@ jobs:
           terraform_version: "1.7.5"
       - name: Patingin nga version ng TF
         run: terraform --version
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact-jks-1
+          path: |
+            dist
+            package.json
   asdasd-job:
     needs: [first-job] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
