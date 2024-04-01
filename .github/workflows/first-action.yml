@@ -1,0 +1,14 @@
+name: First Workflow # Name of the Workflow
+on: workflow_dispatch # Defines the trigger
+jobs: 
+  first-job: # Name of the Job
+    runs-on: ubuntu-latest # Defines the runners. 
+    # More on (hosted) https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners 
+    # (self hosted) https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
+    steps: 
+      - name: Print greeting # name of the step
+        run: |
+          echo "Hello world!!!!!!!"
+          echo "Hello world inside a txt file" > test1.txt
+      - name: Show file content # name of the step
+        run: cat test1.txt
