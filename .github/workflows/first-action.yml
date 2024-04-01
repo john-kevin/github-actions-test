@@ -20,8 +20,10 @@ jobs:
         run: ls -latrh
       - name: Create file in dist
         run: |
+          touch package.json
           mkdir dist
           touch dist/kevinsoriano.txt
+          echo "ssetsetse" > dist/kevinsoriano.txt
       - name: Setup Terraform 
         uses: hashicorp/setup-terraform@v3
         with:
