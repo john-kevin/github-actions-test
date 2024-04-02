@@ -88,6 +88,24 @@ jobs:
         run: |
           echo "BUILD-KEV: ${{ env.BUILD-KEV }}"          
           echo "KEV: $KEV"
+  Deploy:
+    needs: [Build, Read-Artifacts]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ouput artifacts contents
+        run: ls
+  Deploy2:
+    needs: [Deploy, Read-Artifacts]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ouput artifacts contents
+        run: ls
+  Deploy3:
+    needs: [Deploy2, Build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ouput artifacts contents
+        run: ls
 #steps:
 # - uses: actions/checkout@v4
 # - uses: hashicorp/setup-terraform@v3
