@@ -71,7 +71,7 @@ jobs:
           echo "BUILD-KEV: ${{ env.BUILD-KEV }}"
   Read-Artifacts:
     if: failure()
-    # needs: [Build] # [first-job, pre-job, ..]
+    needs: [Build] # [first-job, pre-job, ..] # Needs is needed to actuall pull-off the failure execution here. 
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifacts
