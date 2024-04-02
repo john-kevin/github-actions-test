@@ -104,7 +104,7 @@ jobs:
         run: ls
   Deploy3:
     if: failure()  # If you want deploy3 to be executed, you still needed failure here because, it depends on Deploy 2 and deploy, where deploy depends on Build which failed
-    needs: [Deploy2] 
+    needs: [Deploy,Read-Artifacts,Build] 
     runs-on: ubuntu-latest
     steps:
       - name: Ouput artifacts contents
