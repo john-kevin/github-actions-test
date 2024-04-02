@@ -12,8 +12,10 @@ env:
   WF_ENV: ${{ secrets.WF_ENV }}
   GITHUB_TOKEN : ${{ secrets.GITHUB_TOKEN }}
   KEV: Soriano
+  # OUT OF THE BOX ENV VARS https://docs.github.com/en/actions/learn-github-actions/variables#default-environment-variables
 jobs: 
   Build: # Name of the Job
+    # environment: testing  # udemy maximillian lesson 83 # uses env-wide specific secrets, but you have to setup an evnuronemnt first and create secrets under that environemnts
     env:
       BUILD-KEV: sosoriano
     runs-on: ubuntu-latest # Defines the runners. 
@@ -45,8 +47,10 @@ jobs:
         with:
           terraform_version: "1.7.5"
       - name: Patingin nga version ng TF
-        run: terraform --version
+        id: test-step-condition
+        run: terraformssss --version
       - name: Upload artifacts
+        if: steps.test-step-condition.outcome == 'failure'
         uses: actions/upload-artifact@v3
         with:
           name: artifact-jks-1
