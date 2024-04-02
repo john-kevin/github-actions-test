@@ -48,7 +48,7 @@ jobs:
           terraform_version: "1.7.5"
       - name: Patingin nga version ng TF
         id: test-step-condition
-        run: terraform --version
+        run: terraforms --version
       - name: Upload artifacts
         if: failure() && steps.test-step-condition.outcome == 'failure' # Add conditional steps
         # More on: https://docs.github.com/en/actions/using-jobs/using-conditions-to-control-job-execution
