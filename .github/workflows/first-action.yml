@@ -96,13 +96,15 @@ jobs:
       - name: Ouput artifacts contents
         run: ls
   Deploy2:
+    if: failure() # If you want deploy2 to be executed, you still needed failure here because, it depends on Deploy which succeed, but deploy depends on Build which failed
     needs: [Deploy]
     runs-on: ubuntu-latest
     steps:
       - name: Ouput artifacts contents
         run: ls
   Deploy3:
-    needs: [Deploy2]
+    if: failure()  # If you want deploy3 to be executed, you still needed failure here because, it depends on Deploy 2 and deploy, where deploy depends on Build which failed
+    needs: [Deploy2] 
     runs-on: ubuntu-latest
     steps:
       - name: Ouput artifacts contents
