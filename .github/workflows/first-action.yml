@@ -70,6 +70,7 @@ jobs:
         run: |
           echo "BUILD-KEV: ${{ env.BUILD-KEV }}"
   Deploy:
+    if: failure()
     needs: [Build] # [first-job, pre-job, ..]
     runs-on: ubuntu-latest
     steps:
