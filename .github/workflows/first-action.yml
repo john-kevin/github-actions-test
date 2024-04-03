@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest # Defines the runners. 
     # More on (hosted) https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners 
     # (self hosted) https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/about-self-hosted-runners
+    container: 
+      image: node:16
     outputs:
       random-file-name: ${{ steps.publish.outputs.something }}
       random-file-name2: ${{ steps.publish.outputs.something }}
@@ -48,7 +50,7 @@ jobs:
           terraform_version: "1.7.5"
       - name: Patingin nga version ng TF
         id: test-step-condition
-        run: terraforms --version
+        run: terraform --version
       - name: Upload artifacts
         if: failure() && steps.test-step-condition.outcome == 'failure' # Add conditional steps
         # More on: https://docs.github.com/en/actions/using-jobs/using-conditions-to-control-job-execution
@@ -70,7 +72,7 @@ jobs:
         run: |
           echo "BUILD-KEV: ${{ env.BUILD-KEV }}"
   Read-Artifacts:
-    if: failure()
+    # if: failure()
     needs: [Build] # [first-job, pre-job, ..] # Needs is needed to actuall pull-off the failure execution here. 
     runs-on: ubuntu-latest
     steps:
@@ -88,29 +90,6 @@ jobs:
         run: |
           echo "BUILD-KEV: ${{ env.BUILD-KEV }}"          
           echo "KEV: $KEV"
-  Deploy:
-    if: failure()
-    needs: [Build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ouput artifacts contents
-        run: ls
-  Deploy2:
-    if: failure() # If you want deploy2 to be executed, you still needed failure here because, it depends on Deploy which succeed, but deploy depends on Build which failed
-    needs: [Deploy]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ouput artifacts contents
-        run: ls
-  Deploy3:
-    if: failure()  # If you want deploy3 to be executed, you still needed failure here because, it depends on Deploy 2 and deploy, where deploy depends on Build which failed
-    needs: [Deploy,Read-Artifacts,Build] 
-    runs-on: ubuntu-latest
-    steps:
-      - name: Ouput artifacts contents
-        run: ls
-      - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
 
 
 
