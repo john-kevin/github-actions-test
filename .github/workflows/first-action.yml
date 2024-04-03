@@ -52,11 +52,14 @@ jobs:
         id: test-step-condition
         run: terraform --version
       - name: Upload artifacts
+        id: publish-artifacts
         if: failure() && steps.test-step-condition.outcome == 'failure' # Add conditional steps
+        
         # More on: https://docs.github.com/en/actions/using-jobs/using-conditions-to-control-job-execution
         # and : https://github.com/orgs/community/discussions/50729
         # max's video: https://docs.github.com/en/actions/learn-github-actions/contexts#steps-context
         # failure () - see more in ./images/special-conditional-functions.png
+        
         uses: actions/upload-artifact@v3
         with:
           name: artifact-jks-1
@@ -77,6 +80,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get build artifacts
+        if: always() && steps.publish-artifacts.outcome != 'skipped'
         uses: actions/download-artifact@v3
         with:
           name: artifact-jks-1
