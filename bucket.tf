@@ -5,7 +5,7 @@ data "oci_objectstorage_namespace" "ns" {
 resource "oci_objectstorage_bucket" "sample" {
   compartment_id = var.compartment_ocid
   namespace      = data.oci_objectstorage_namespace.ns.namespace
-  name           = "test-terrateam-bucket-from-csa-shared-auth-sandbox"
+  name           = "test-terrateam-bucket-from-csa-shared-auth-sandboxs"
   access_type    = "NoPublicAccess"
   auto_tiering   = "Disabled"
 }
