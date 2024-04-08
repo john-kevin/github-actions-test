@@ -2,3 +2,10 @@ enabled: true
 automerge:
   enabled: true
   delete_branch: true
+  
+when_modified:
+  file_patterns: ["**/bucket.tf", "**/*.tfvars"]
+  autoplan: true
+  autoplan_draft_pr: true
+  autoapply: false
+  
