@@ -1,4 +1,4 @@
-# enabled: true
-# automerge:
-#   enabled: true
-#   delete_branch: true
+enabled: true
+automerge:
+  enabled: true
+  delete_branch: true
