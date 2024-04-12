@@ -22,6 +22,16 @@ cost_estimation:
   enabled: false
   provider: infracost
   currency: USD
+hooks:
+  # all:
+  #   pre: []
+  #   post: []
+  plan:
+    pre: [ls]
+    post: [dir]
+  apply:
+    pre: []
+    post: []
 dirs:
   'environments/prod/**/*.tf':
     tags: [prod]
