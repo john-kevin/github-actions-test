@@ -6,12 +6,12 @@ apply_requirements:
     merge_conflicts:
       enabled: true
     status_checks:
-      enabled: true
+      enabled: false
       ignore_matching: []
   create_pending_apply_check: false
 automerge:
-  enabled: false
-  delete_branch: false
+  enabled: true
+  delete_branch: true
 checkout_strategy: merge
 when_modified:
   file_patterns: ["**/*.tf", "**/*.tfvars"]
