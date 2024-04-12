@@ -25,13 +25,20 @@ cost_estimation:
 dirs:
   'environments/prod/**/*.tf':
     tags: [prod]
-  'environments/dev/**/*.tf':
-    tags: [dev]
+  'environments/staging/**/*.tf':
+    tags: [staging]
 workflows:
-  - tag_query: ""
+  - tag_query: "prod"
     plan:
       - type: init
       - type: plan
     apply:
       - type: init
       - type: apply
+  - tag_query: "staging"
+    plan:
+      - type: init
+      - type: plan
+    apply:
+      - type: init
+      # - type: apply
