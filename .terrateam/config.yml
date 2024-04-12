@@ -8,7 +8,7 @@ apply_requirements:
     status_checks:
       enabled: true
       ignore_matching: []
-  create_pending_apply_check: true
+  create_pending_apply_check: false
 automerge:
   enabled: false
   delete_branch: false
