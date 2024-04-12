@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+# Pull secrets from GH Environment
+  #- These secrets can be created ahead of time by our vending machine
