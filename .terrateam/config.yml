@@ -27,8 +27,10 @@ hooks:
   #   pre: []
   #   post: []
   plan:
-    pre: [ls]
-    post: [dir]
+    pre: 
+      - type: run
+        cmd: ['ls']
+    # post: [dir]
   apply:
     pre: []
     post: []
