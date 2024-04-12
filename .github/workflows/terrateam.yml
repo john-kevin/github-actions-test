@@ -21,12 +21,12 @@ on:
         description: 'API Base URL'
 jobs:
   terrateam:
+    name: Terrateam Action
     permissions: # Required to pass credentials to the Terrateam action
       id-token: write
       contents: read
     runs-on: ubuntu-latest
     timeout-minutes: 1440
-    name: Terrateam Action
     steps:
       - uses: actions/checkout@v3
       - name: Run Terrateam Action
@@ -37,6 +37,3 @@ jobs:
           api-base-url: '${{ github.event.inputs.api-base-url }}'
         env:
           SECRETS_CONTEXT: ${{ toJson(secrets) }}
-  # autoplan: true
-  # autoplan_draft_pr: true
-  # autoapply: false
