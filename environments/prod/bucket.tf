@@ -14,7 +14,7 @@
 
 locals {
   test = "Hello Terrateam!"
-  another = "Terrateam Test, with updates from PROD"
+  another = "Terrateam Test, with updates from PROD!"
 }
 
 output "test" {
