@@ -22,3 +22,16 @@ cost_estimation:
   enabled: false
   provider: infracost
   currency: USD
+dirs:
+  'environments/prod/**/*.tf':
+    tags: [prod]
+  'environments/dev/**/*.tf':
+    tags: [dev]
+workflows:
+  - tag_query: ""
+    plan:
+      - type: init
+      - type: plan
+    apply:
+      - type: init
+      - type: apply
