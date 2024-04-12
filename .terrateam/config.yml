@@ -28,10 +28,17 @@ dirs:
   'environments/dev/**/*.tf':
     tags: [dev]
 workflows:
-  - tag_query: ""
+  - tag_query: "prod"
     plan:
       - type: init
       - type: plan
     apply:
       - type: init
       - type: apply
+  - tag_query: "dev"
+    plan:
+      - type: init
+      - type: plan
+    apply:
+      - type: init
+      # - type: apply
